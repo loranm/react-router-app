@@ -1,7 +1,8 @@
 import React from "react";
-
-const Posts = ({match}) => {
-  const {year, month } = match.params
+import queryString from "query-string"
+const Posts = ({match, location}) => {
+  const {sortBy} = queryString.parse(location.search)
+  const {year, month} = match.params
   return (
     <div>
       <h1>Posts</h1>

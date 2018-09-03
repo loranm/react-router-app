@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 
 import NavBar from "./components/navbar";
 import Products from "./components/products";
@@ -22,9 +22,12 @@ class App extends Component {
           <Switch>
             <Route path="/products/:id" component={ProductDetails}/>
             <Route path="/products" render={(props) => <Products sortBy="newest" {...props} />}/>
-            <Route path="/posts/:year?/:month?" component={Posts}/>
+            <Route path="/posts/:year?/:month?" component={Posts} /> 
+            <Redirect from="/messages" to="/posts" />  
+            <Route path="/not-found" component={NotFound} />
             <Route path="/admin" component={Dashboard}/>
-            <Route path="/" component={Home}/>
+            <Route path="/" exact component={Home} />
+            <Redirect to="/not-found"/>
           </Switch>
         </div>
       </div>
